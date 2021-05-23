@@ -4,6 +4,7 @@ const exphbs  = require('express-handlebars');
 const morgan  = require("morgan");
 const { render } = require('ejs');
 const methodOverride = require('method-override');
+const Article = require('./app/models/article')
 const app = express();
 const port = 3000;
 
@@ -31,11 +32,7 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
-
-
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // console.log(__dirname)
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
-
-//test up lên github

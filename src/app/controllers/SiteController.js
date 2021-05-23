@@ -7,7 +7,7 @@ class SiteController{
     Course.find({})
         .then(courses => {
             // courses = courses.map(course => course.toObject())
-            res.render('home', {
+            res.render('course', {
                 courses: multipleMongooseToObject(courses)
             });
         })
@@ -17,6 +17,10 @@ class SiteController{
     //[GET] /search
     show(req, res){
         res.render('search');
+    }
+
+    homepage(req, res){
+        res.render('homepage');
     }
 }
 
