@@ -19,8 +19,16 @@ class SiteController{
         res.render('search');
     }
 
+    quiz(req, res){
+        res.render('courses/quiz');
+    }
+
     homepage(req, res){
         res.render('homepage');
+    }
+
+    login(req, res){
+        res.send('Trang login');
     }
 }
 

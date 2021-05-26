@@ -22,10 +22,10 @@ router.get('/:slug', async (req, res) => {
   res.render('articles/show', { article: article })
 })
 
-router.post('/', async (req, res, next) => {
-  req.article = new Article()
-  next()
-}, saveArticleAndRedirect('new'))
+// router.post('/', async (req, res, next) => {
+//   req.article = new Article()
+//   next()
+// }, saveArticleAndRedirect('new'))
 
 router.put('/:id', async (req, res, next) => {
   req.article = await Article.findById(req.params.id)

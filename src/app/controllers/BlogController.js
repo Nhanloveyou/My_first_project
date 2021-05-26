@@ -2,6 +2,7 @@ const Course = require('../models/article');
 const { multipleMongooseToObject } = require('../../util/mongoose');
 const Article = require('../models/article');
 const article = require('../models/article');
+const {mongooseToObject} = require('../../util/mongoose');
 
 class BlogController{
     // [GET] Trang tạo mới
@@ -25,9 +26,33 @@ class BlogController{
     //     res.send('Hello World');
     // }
 
+    //Get [articles/new]
     new(req, res) {
         res.render('articles/new', { article: new Article() })
     }
+
+    //Post [articles/]
+    store(req, res, next){
+        const article = new Article(req.body);
+        article.save()
+            .then(() => res.redirect('/articles'))
+            .catch(error => {
+            })
+             
+    }
+
+    show(req, res, next){
+        Article.findOne({slug: req.params.slug})
+            .then((article) => {
+                res.render('articles/show', {article: mongooseToObject(article)})
+            })
+            .catch(next);
+    }
+
+    // async (req, res, next) {
+    //     req.article = new Article()
+    //     next()
+    //   }, saveArticleAndRedirect('new'))
 }
 
 module.exports = new BlogController;
